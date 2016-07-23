@@ -4,7 +4,9 @@ using System.Collections;
 
 
 public class Common_Button : MonoBehaviour {
-	
+
+	private GameObject mainContent;
+	private GameObject gachaBnrContent;
 	public Button menuButton;
 	public Button myButton;
 
@@ -17,6 +19,15 @@ public class Common_Button : MonoBehaviour {
 	public Button newsButton;
 	public Button resqueButton;
 	public Button compButton;
+
+	Animation animationMainContent;
+
+	void Start(){
+		this.mainContent = GameObject.Find("Main_Content");
+		this.gachaBnrContent = GameObject.Find("Gacha_Bnr_Content");
+
+		this.animationMainContent = this.mainContent.GetComponent<Animation>();
+	}
 
 
 	// GlobalButton
@@ -70,12 +81,19 @@ public class Common_Button : MonoBehaviour {
 		this.OnClickScaleUp(this.questButton.gameObject, 1.0f);
 	}
 
+	// GachaButton
 	public void OnClickGachaButtonDown(){
 		this.OnClickScaleDown(this.gachaButton.gameObject, 0.8f);
 	}
 
 	public void OnClickGachaButtonUp(){
 		this.OnClickScaleUp(this.gachaButton.gameObject, 1.0f);
+
+		StartCoroutine ("OpenGachaContent");
+	}
+
+	public void OnClickReturnButtonGachaContent(){
+		StartCoroutine ("CloseGachaContent");
 	}
 
 	public void OnClickPvPButtonDown(){
@@ -110,6 +128,19 @@ public class Common_Button : MonoBehaviour {
 		this.OnClickScaleUp(this.compButton.gameObject, 1.0f);
 	}
 
+
+	private IEnumerator CloseGachaContent() {
+		iTween.MoveTo(this.gachaBnrContent, iTween.Hash("x", 870.0f, "time", 0.5));
+
+		yield return new WaitForSeconds (0.5f); 
+		this.animationMainContent.Play("Mypage_Content_Up");
+	}
+
+	private IEnumerator OpenGachaContent() {
+		this.animationMainContent.Play("Mypage_Content_Down");
+		yield return new WaitForSeconds (0.5f); 
+		iTween.MoveTo(this.gachaBnrContent, iTween.Hash("x", 0.0f, "time", 0.5));
+	}
 
 	private void OnClickScaleDown(GameObject btn, float size){
 		iTween.ScaleTo (btn, iTween.Hash ("x", size, "y", size, "delay", 0f));

@@ -45,8 +45,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Data\GachaCardModel.cs" />
+     <Compile Include="Assets\Data\GachaModel.cs" />
+     <Compile Include="Assets\Data\ResultGachaData.cs" />
+     <Compile Include="Assets\Scripts\Common\Banner_Manager.cs" />
      <Compile Include="Assets\Scripts\Common\Common_Button.cs" />
      <Compile Include="Assets\Scripts\Common\UGUIEventTriger.cs" />
+     <Compile Include="Assets\Scripts\Gacha\GachaManager.cs" />
      <Compile Include="Assets\Scripts\Main\main.cs" />
      <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
  <Reference Include="UnityEngine.UI">
