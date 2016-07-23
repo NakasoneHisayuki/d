@@ -4,6 +4,7 @@ using System.Collections;
 
 public class main : MonoBehaviour{
 
+	public GameObject gachaContent;
     public Image topImage;
     public Button startButton;
 
