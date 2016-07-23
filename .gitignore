@@ -1,4 +1,9 @@
 temp/
-ProjectSettings/
+diva/ProjectSettings/
 Library/
 diva/Library/
+diva/d/
+diva/ProjectSettings
+diva/ProjectSettings/
+diva/obj/
+obj
