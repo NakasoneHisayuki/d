@@ -6,7 +6,7 @@ using System.Collections;
 public class Common_Button : MonoBehaviour {
 
 	private GameObject mainContent;
-	private GameObject gachaContent;
+	private GameObject gachaBnrContent;
 	public Button menuButton;
 	public Button myButton;
 
@@ -24,7 +24,7 @@ public class Common_Button : MonoBehaviour {
 
 	void Start(){
 		this.mainContent = GameObject.Find("Main_Content");
-		this.gachaContent = GameObject.Find("Gacha_Content");
+		this.gachaBnrContent = GameObject.Find("Gacha_Bnr_Content");
 
 		this.animationMainContent = this.mainContent.GetComponent<Animation>();
 	}
@@ -130,7 +130,7 @@ public class Common_Button : MonoBehaviour {
 
 
 	private IEnumerator CloseGachaContent() {
-		iTween.MoveTo(this.gachaContent, iTween.Hash("x", 870.0f, "time", 0.5));
+		iTween.MoveTo(this.gachaBnrContent, iTween.Hash("x", 870.0f, "time", 0.5));
 
 		yield return new WaitForSeconds (0.5f); 
 		this.animationMainContent.Play("Mypage_Content_Up");
@@ -139,7 +139,7 @@ public class Common_Button : MonoBehaviour {
 	private IEnumerator OpenGachaContent() {
 		this.animationMainContent.Play("Mypage_Content_Down");
 		yield return new WaitForSeconds (0.5f); 
-		iTween.MoveTo(this.gachaContent, iTween.Hash("x", 0.0f, "time", 0.5));
+		iTween.MoveTo(this.gachaBnrContent, iTween.Hash("x", 0.0f, "time", 0.5));
 	}
 
 	private void OnClickScaleDown(GameObject btn, float size){
