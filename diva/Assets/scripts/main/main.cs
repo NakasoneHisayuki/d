@@ -11,7 +11,12 @@ public class main : MonoBehaviour{
 	public Animation mainContent;
 	bool is_global_move = false;
 
+	float resetPositionX = 0.0f;
+	float resetPositionY = 0.0f;
+
     void Awake(){
+		this.globalNavi[0].transform.localPosition = new Vector2(this.resetPositionX,115.0f);
+		this.globalNavi[1].transform.localPosition = new Vector2(-11.5f,this.resetPositionY);
     }
 
     // Use this for initialization
