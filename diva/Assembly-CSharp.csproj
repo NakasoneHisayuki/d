@@ -45,14 +45,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Data\EventBattleManager.cs" />
+     <Compile Include="Assets\Data\ExperienceData.cs" />
      <Compile Include="Assets\Data\GachaCardModel.cs" />
      <Compile Include="Assets\Data\GachaModel.cs" />
+     <Compile Include="Assets\Data\MypageManager.cs" />
      <Compile Include="Assets\Data\ResultGachaData.cs" />
-     <Compile Include="Assets\Scripts\Common\Banner_Manager.cs" />
-     <Compile Include="Assets\Scripts\Common\Common_Button.cs" />
-     <Compile Include="Assets\Scripts\Common\UGUIEventTriger.cs" />
-     <Compile Include="Assets\Scripts\Gacha\GachaManager.cs" />
-     <Compile Include="Assets\Scripts\Main\main.cs" />
+     <Compile Include="Assets\Data\UserDataModel.cs" />
+     <Compile Include="Assets\scripts\Battle\BattleManager.cs" />
+     <Compile Include="Assets\scripts\Battle\BossManager.cs" />
+     <Compile Include="Assets\scripts\Battle\CharaManager.cs" />
+     <Compile Include="Assets\scripts\Common\Banner_Manager.cs" />
+     <Compile Include="Assets\scripts\Common\Common_Button.cs" />
+     <Compile Include="Assets\scripts\Common\UGUIEventTriger.cs" />
+     <Compile Include="Assets\scripts\Gacha\GachaManager.cs" />
+     <Compile Include="Assets\scripts\OggVideoStreamingTexture.cs" />
+     <Compile Include="Assets\scripts\PlayMovieOnSpace.cs" />
+     <Compile Include="Assets\scripts\Quest\QuestManager.cs" />
+     <Compile Include="Assets\scripts\main\main.cs" />
      <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
