@@ -7,6 +7,7 @@ public class Common_Button : MonoBehaviour {
 	private GameObject mainContent;
 	private GameObject gachaBnrContent;
 	private GameObject questContent;
+	private GameObject pvpContent;
 
 	public Button menuButton;
 	public Button myButton;
@@ -28,6 +29,7 @@ public class Common_Button : MonoBehaviour {
 		this.mainContent = GameObject.Find("Main_Content");
 		this.gachaBnrContent = GameObject.Find("Gacha_Bnr_Content");
 		this.questContent = GameObject.Find("Quest_Content");
+		this.pvpContent = GameObject.Find("PvP_Battle_Content");
 		this.animationMainContent = this.mainContent.GetComponent<Animation>();
 	}
 
@@ -100,6 +102,9 @@ public class Common_Button : MonoBehaviour {
 
 	public void OnClickPvPButtonDown(){
 		this.OnClickScaleDown(this.pvpButton.gameObject, 0.8f);
+		StartCoroutine ("OpenPvPContent");
+
+
 	}
 
 	public void OnClickPvPButtonUp(){
@@ -142,6 +147,12 @@ public class Common_Button : MonoBehaviour {
 		this.animationMainContent.Play("Mypage_Content_Down");
 		yield return new WaitForSeconds (0.5f); 
 		iTween.MoveTo(this.gachaBnrContent, iTween.Hash("x", 0.0f, "time", 0.5));
+	}
+
+	private IEnumerator OpenPvPContent() {
+		this.animationMainContent.Play("Mypage_Content_Down");
+		yield return new WaitForSeconds (0.5f); 
+		iTween.MoveTo(this.pvpContent, iTween.Hash("x", 0.0f, "time", 0.5));
 	}
 
 	private IEnumerator OpenQuestContent() {
