@@ -21,7 +21,7 @@ public class Common_Button : MonoBehaviour {
 	public Button newsButton;
 	public Button resqueButton;
 	public Button compButton;
-
+    private bool isMuve = false;
 
 	Animation animationMainContent;
 
@@ -49,7 +49,33 @@ public class Common_Button : MonoBehaviour {
 
 	public void OnClickMyButtonUp(){
 		iTween.MoveTo(this.myButton.gameObject, iTween.Hash("x", -402.0f, "time", 0.5));
-	}
+        this.CheckContentPosition();
+
+
+    }
+
+
+    private void CheckContentPosition() {
+
+        if (this.isMuve) return;
+        if (this.mainContent.gameObject.transform.localScale.x == 1) return;
+
+        if (this.gachaBnrContent.transform.localPosition.x == 0.0f) {
+            iTween.MoveTo(this.gachaBnrContent, iTween.Hash("x", 870.0f, "time", 0.5));
+        }
+
+        if (this.questContent.transform.localPosition.x == 0.0f){
+            iTween.MoveTo(this.questContent, iTween.Hash("x", 870.0f, "time", 0.5));
+        }
+
+        if (this.pvpContent.transform.localPosition.x == 0.0f){
+            iTween.MoveTo(this.pvpContent, iTween.Hash("x", 870.0f, "time", 0.5));
+        }
+
+        StartCoroutine("OpenMyContent");
+
+
+    }
 
 
 	// MypageButton
@@ -82,7 +108,8 @@ public class Common_Button : MonoBehaviour {
 	}
 
 	public void OnClickQuestButtonUp(){
-		this.OnClickScaleUp(this.questButton.gameObject, 1.0f);
+        this.isMuve = true;
+        this.OnClickScaleUp(this.questButton.gameObject, 1.0f);
 		StartCoroutine ("OpenQuestContent");
 	}
 
@@ -92,7 +119,8 @@ public class Common_Button : MonoBehaviour {
 	}
 
 	public void OnClickGachaButtonUp(){
-		this.OnClickScaleUp(this.gachaButton.gameObject, 1.0f);
+        this.isMuve = true;
+        this.OnClickScaleUp(this.gachaButton.gameObject, 1.0f);
 		StartCoroutine ("OpenGachaContent");
 	}
 
@@ -101,7 +129,8 @@ public class Common_Button : MonoBehaviour {
 	}
 
 	public void OnClickPvPButtonDown(){
-		this.OnClickScaleDown(this.pvpButton.gameObject, 0.8f);
+        this.isMuve = true;
+        this.OnClickScaleDown(this.pvpButton.gameObject, 0.8f);
 		StartCoroutine ("OpenPvPContent");
 
 
@@ -136,30 +165,40 @@ public class Common_Button : MonoBehaviour {
 	}
 
 
-	private IEnumerator CloseGachaContent() {
+    private IEnumerator OpenMyContent()
+    {
+        yield return new WaitForSeconds(0.5f);
+        this.animationMainContent.Play("Mypage_Content_Up");
+    }
+
+    private IEnumerator CloseGachaContent() {
 		iTween.MoveTo(this.gachaBnrContent, iTween.Hash("x", 870.0f, "time", 0.5));
 
 		yield return new WaitForSeconds (0.5f); 
 		this.animationMainContent.Play("Mypage_Content_Up");
-	}
+        this.isMuve = false;
+    }
 
 	private IEnumerator OpenGachaContent() {
 		this.animationMainContent.Play("Mypage_Content_Down");
 		yield return new WaitForSeconds (0.5f); 
 		iTween.MoveTo(this.gachaBnrContent, iTween.Hash("x", 0.0f, "time", 0.5));
-	}
+        this.isMuve = false;
+    }
 
 	private IEnumerator OpenPvPContent() {
 		this.animationMainContent.Play("Mypage_Content_Down");
 		yield return new WaitForSeconds (0.5f); 
 		iTween.MoveTo(this.pvpContent, iTween.Hash("x", 0.0f, "time", 0.5));
-	}
+        this.isMuve = false;
+    }
 
 	private IEnumerator OpenQuestContent() {
 		this.animationMainContent.Play("Mypage_Content_Down");
 		yield return new WaitForSeconds (0.5f); 
 		iTween.MoveTo(this.questContent, iTween.Hash("x", 0.0f, "time", 0.5));
-	}
+        this.isMuve = false;
+    }
 
 	private void OnClickScaleDown(GameObject btn, float size){
 		iTween.ScaleTo (btn, iTween.Hash ("x", size, "y", size, "delay", 0f));

@@ -14,8 +14,7 @@ public class GachaManager : MonoBehaviour {
 	public GameObject gachaContent;
 	public GameObject gachaBnrContent;
 	public GameObject gachaResultContent;
-	public Text[] resultText;
-
+    public Image[] cardImage;
 	int num10 = 10;
 
 	public void OnClickGachaReturnButton(){
@@ -49,7 +48,6 @@ public class GachaManager : MonoBehaviour {
 	private IEnumerator startGacha() {
 		this.gachaModel.isGacha = true;
 		this.GachaLogic();
-		this.setResultGachaName();
 
 		iTween.MoveTo(this.gachaContent, iTween.Hash("x", 870.0f, "time", 0.5));
 
@@ -58,12 +56,6 @@ public class GachaManager : MonoBehaviour {
 		this.gachaModel.isGacha = false;
 	}
 
-	private void setResultGachaName(){
-
-		for(int i = 0; i < this.num10; i ++){
-			this.resultText[i].text = this.resultGachaData.resultGachaDataList[i].gachaName;
-		}
-	}
 
 	private void GachaLogic(){
 
@@ -74,16 +66,18 @@ public class GachaManager : MonoBehaviour {
 		// R
 		int rNum = 100 * (int)this.gachaModel.unitModelList[2].probability;
 		int maxNum = ssrNum + srNum + rNum;
-//		Debug.Log(maxNum);
-		// ModelにCardName Rarertyセット
-//		this.gachaCardModel.setCardData();
+        //		Debug.Log(maxNum);
+        // ModelにCardName Rarertyセット
+        //		this.gachaCardModel.setCardData();
+        Sprite[] spriteCardImage = Resources.LoadAll<Sprite>("Image/Card/");
 
-		// 10連ガチャ結果をmodelにセット
-		for(int i = 0; i < this.num10; i ++){
+        // 10連ガチャ結果をmodelにセット
+        for (int i = 0; i < this.num10; i ++){
+
 			int iRandNum = UnityEngine.Random.Range(0, 100);
-			string name = this.gachaCardModel.gachaCardModelList[iRandNum].cardName + "_" + this.gachaCardModel.gachaCardModelList[iRandNum].rarerty;
+            this.cardImage[i].sprite = spriteCardImage[this.gachaCardModel.gachaCardModelList[iRandNum].card_id - 1];
 
-			this.resultGachaData.resultGachaDataList[i].gachaName = name;
+            this.resultGachaData.resultGachaDataList[i].gachaName = name;
 		}
 
 	}

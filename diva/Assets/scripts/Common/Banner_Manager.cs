@@ -34,6 +34,10 @@ public class Banner_Manager : MonoBehaviour {
 		StartCoroutine ("GachaContent");
 	}
 
+    public void OnClickMyButton() {
+
+    }
+
 
 	private IEnumerator GachaContent() {
 		iTween.MoveTo(this.gachaBnrContent, iTween.Hash("x", 870.0f, "time", 0.5));
